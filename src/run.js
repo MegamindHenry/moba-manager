@@ -69,12 +69,19 @@ function mapDisplay() {
 
 function planPharse() {
     for (var i = 0; i < players.length; i ++) {
-        players[i].newPosition = players[i].plan();
+        players[i].plan();
     }
 }
 
 function actionPharse() {
     for (var i = 0; i < players.length; i ++) {
+        if (players[i].newPosition >= mapPoss.length) {
+            players[i].newPosition = mapPoss.length - 1;
+        }
+
+        if (players[i].newPosition < 0) {
+            players[i].newPosition = 0;
+        }
         players[i].position = players[i].newPosition;
     }
 }

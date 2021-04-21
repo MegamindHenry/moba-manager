@@ -6,9 +6,28 @@ function Player(name, team){
 }
 
 Player.prototype.plan = function () {
-    array = [0,1,2]
-    return randomElement = array[Math.floor(Math.random() * array.length)];
+    var cards = createCards({1:2,2:2,3:1});
+    var selectCard = randChoice(cards);
+
+    this.move(selectCard);
 };
+
+Player.prototype.move = function(card) {
+    if (card == 1) {
+        this.newPosition = this.position + 1;
+        console.log(`${this.name} moves forward.`);
+    } else if (card == 2) {
+        this.newPosition = this.position - 1;
+        console.log(`${this.name} moves forward.`);
+    } else if (card == 3) {
+        this.newPosition = this.position;
+        console.log(`${this.name} moves forward.`);
+    } else {
+        console.error("Moves not found!");
+    }
+
+    return 1;
+}
 
 function initPlayers() {
     var players = [];
