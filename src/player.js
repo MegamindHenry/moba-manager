@@ -2,7 +2,13 @@ function Player(name, team){
     this.name = name;
     this.team = team;
     this.position = 0;
+    this.newPosition = 0;
 }
+
+Player.prototype.plan = function () {
+    array = [0,1,2]
+    return randomElement = array[Math.floor(Math.random() * array.length)];
+};
 
 function initPlayers() {
     var players = [];

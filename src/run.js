@@ -21,6 +21,11 @@ function roundContinue() {
 
     var roundInfoP = document.getElementById("round-info-p");
     roundInfoP.innerHTML = roundInfo;
+
+    planPharse();
+    actionPharse();
+
+    mapDisplay();
 }
 
 function mapDisplay() {
@@ -60,4 +65,16 @@ function mapDisplay() {
     var mapDisplayDiv = document.getElementById("map-display-div");
     mapDisplayDiv.innerHTML = "";
     mapDisplayDiv.appendChild(table);
+}
+
+function planPharse() {
+    for (var i = 0; i < players.length; i ++) {
+        players[i].newPosition = players[i].plan();
+    }
+}
+
+function actionPharse() {
+    for (var i = 0; i < players.length; i ++) {
+        players[i].position = players[i].newPosition;
+    }
 }
