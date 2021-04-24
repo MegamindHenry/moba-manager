@@ -13,7 +13,16 @@ function Champ(champJSON) {
     this.hp = champJSON["HP"]
     this.attack = champJSON["Attack"]
     this.attRange = champJSON["AttackRange"]
-    this.spell1 = champJSON["Spell1"]
+    this.spell1 = spells[champJSON["Spell1"]]
+}
+
+function CurrentChamp(champ) {
+    this.id = champ.id
+    this.name = champ.name
+    this.hp = champ.hp
+    this.attack = champ.attack
+    this.attRange = champ.attRange
+    this.spell1 = champ.spell1
 }
 
 function Spell(spellJSON) {

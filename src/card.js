@@ -1,4 +1,6 @@
 // const MoveCards = Object.freeze({"forward":1, "backward":2, "stay":3})
+const MoveCardEnum = Object.freeze({"forward":1, "backward":2, "stay":3})
+const ActionCardEnum = Object.freeze({"move":1, "attack":2, "castSpell":3})
 
 function createCards(cardSet) {
     var cards = []

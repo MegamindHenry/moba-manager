@@ -1,5 +1,6 @@
 var roundN = 0
 var players
+var playersList
 var champs
 var spells
 var mapPoss
@@ -10,11 +11,20 @@ function runGame() {
     console.log("Game Strat!")
 
     mapPoss = initMap()
-    players = initPlayers()
+    ppn = initPlayers()
+    players = ppn[0]
+    playersList = ppn[1]
     spells = initSpells()
     champs = initChamps()
-    initPlayersPoss(players, [2,3,4,7,8,9])
+    selectPlayerChamps([[1,3], [2,2], [3,1], [4,1], [5,2], [6,3]])
+    initPlayersPoss([3,4,5,6,7,8])
     mapDisplay()
+
+    document.addEventListener('keyup', e => {
+        if (e.keyCode === 13) {
+            roundContinue()
+        }
+    })
 }
 
 function roundContinue() {
@@ -27,65 +37,24 @@ function roundContinue() {
     roundInfoP.innerHTML = roundInfo
 
     planPharse()
-    actionPharse()
+    actPharse()
 
     mapDisplay()
 }
 
-function mapDisplay() {
-    var table = document.createElement("table")
-    table.classList.add("table")
-    table.classList.add("table-striped")
-    table.classList.add("table-bordered")
-
-    var trHead = table.insertRow(-1)
-    var tr = table.insertRow(-1)
-
-    var mapChampPos = calMapPos(players, mapPoss)
-
-    for (var i = 0; i < mapPoss.length; i ++) {
-        var th = document.createElement("th")
-        th.innerHTML = mapPoss[i].name
-        trHead.appendChild(th)
-        var th = document.createElement("th")
-
-        for (var j = 0; j < mapChampPos[i].length; j ++) {
-            var label = document.createElement("label")
-            player = mapChampPos[i][j]
-            label.innerHTML = player.name
-            label.classList.add("btn")
-            if (player.team == "Blue") {
-                label.classList.add("btn-primary")
-            } else if (player.team == "Red") {
-                label.classList.add("btn-danger")
-            }
-            label.classList.add("btn-player")
-            th.appendChild(label)
-        }
-
-        tr.appendChild(th)
-    }
-
-    var mapDisplayDiv = document.getElementById("map-display-div")
-    mapDisplayDiv.innerHTML = ""
-    mapDisplayDiv.appendChild(table)
-}
-
 function planPharse() {
-    for (var i = 0; i < players.length; i ++) {
-        players[i].plan()
+    console.log("Plan Pharse")
+    for (var i = 0; i < playersList.length; i ++) {
+        player = players[playersList[i]]
+        player.plan()
     }
 }
 
-function actionPharse() {
-    for (var i = 0; i < players.length; i ++) {
-        if (players[i].newPosition >= mapPoss.length) {
-            players[i].newPosition = mapPoss.length - 1
-        }
+function actPharse() {
+    console.log("Action Pharse")
 
-        if (players[i].newPosition < 0) {
-            players[i].newPosition = 0
-        }
-        players[i].position = players[i].newPosition
+    for (var i = 0; i < playersList.length; i ++) {
+        player = players[playersList[i]]
+        player.act()
     }
 }
