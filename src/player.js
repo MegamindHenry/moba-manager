@@ -100,9 +100,10 @@ Player.prototype.act = function() {
         if (this.newPosition >= mapPoss.length || this.newPosition < 0) {
             console.log("Out of map! Stay.")
         }
+        var oldPostion = this.position
         this.position = this.newPosition
         this.planMove = false
-        console.log(`        Move to ${this.position}.`)
+        console.log(`        Move from ${oldPostion} to ${this.position}.`)
     }
 
     if (this.planAttack) {
