@@ -9,13 +9,13 @@ function createCards(cardSet) {
     // [1,1,2,2,3]
     Object.entries(cardSet).forEach(([key, value]) => {
         for (var i = 0; i < value; i ++) {
-            cards.push(key);
+            cards.push(key)
         }
-    });
+    })
 
-    return cards;
+    return cards
 }
 
 function randChoice(cards) {
-    return cards[Math.floor(Math.random() * cards.length)];
+    return cards[Math.floor(Math.random() * cards.length)]
 }
